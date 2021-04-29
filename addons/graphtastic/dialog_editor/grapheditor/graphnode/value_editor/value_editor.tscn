@@ -1,0 +1,274 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/graphtastic/dialog_editor/grapheditor/graphnode/value_editor/value_editor.gd" type="Script" id=1]
+
+[node name="ValueEdit" type="WindowDialog"]
+visible = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 7.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+margin_right = 1024.0
+margin_bottom = 593.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainerTop" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 52.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxName" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/VBoxContainerTop"]
+margin_right = 1024.0
+margin_bottom = 24.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NID" type="Label" parent="ScrollContainer/VBoxContainer/VBoxContainerTop/HBoxName"]
+margin_top = 5.0
+margin_right = 113.0
+margin_bottom = 19.0
+text = "name of the node"
+align = 1
+
+[node name="NODENAME" type="LineEdit" parent="ScrollContainer/VBoxContainer/VBoxContainerTop/HBoxName"]
+margin_left = 117.0
+margin_right = 1024.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+expand_to_text_length = true
+
+[node name="HBoxSpeaker" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/VBoxContainerTop"]
+margin_top = 28.0
+margin_right = 1024.0
+margin_bottom = 52.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/VBoxContainerTop/HBoxSpeaker"]
+margin_top = 5.0
+margin_right = 54.0
+margin_bottom = 19.0
+text = "speaker:"
+align = 1
+
+[node name="SPEAKER" type="LineEdit" parent="ScrollContainer/VBoxContainer/VBoxContainerTop/HBoxSpeaker"]
+margin_left = 58.0
+margin_right = 496.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+expand_to_text_length = true
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/VBoxContainerTop/HBoxSpeaker"]
+margin_left = 500.0
+margin_top = 5.0
+margin_right = 582.0
+margin_bottom = 19.0
+text = "Face-Texture"
+
+[node name="FACEPIC" type="LineEdit" parent="ScrollContainer/VBoxContainer/VBoxContainerTop/HBoxSpeaker"]
+margin_left = 586.0
+margin_right = 1024.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="HSplitContainer" type="HSplitContainer" parent="ScrollContainer/VBoxContainer"]
+margin_top = 56.0
+margin_right = 1024.0
+margin_bottom = 575.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+split_offset = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DIALOGTXT" type="TextEdit" parent="ScrollContainer/VBoxContainer/HSplitContainer"]
+margin_right = 932.0
+margin_bottom = 519.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_colors/function_color = Color( 1, 1, 1, 1 )
+custom_colors/number_color = Color( 1, 1, 1, 1 )
+syntax_highlighting = true
+show_line_numbers = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HSplitContainer"]
+margin_left = 944.0
+margin_right = 1024.0
+margin_bottom = 519.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonStart" type="Button" parent="ScrollContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 43.0
+focus_mode = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "start"
+
+[node name="ButtonInsertVar" type="Button" parent="ScrollContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
+margin_top = 47.0
+margin_right = 80.0
+margin_bottom = 91.0
+focus_mode = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "insert var"
+
+[node name="ButtonChangeVar" type="Button" parent="ScrollContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
+margin_top = 95.0
+margin_right = 80.0
+margin_bottom = 138.0
+focus_mode = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "change var"
+
+[node name="ButtonIf" type="Button" parent="ScrollContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
+margin_top = 142.0
+margin_right = 80.0
+margin_bottom = 186.0
+focus_mode = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "if-condi"
+
+[node name="ButtonSignal" type="Button" parent="ScrollContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
+margin_top = 190.0
+margin_right = 80.0
+margin_bottom = 233.0
+focus_mode = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "signal"
+
+[node name="ButtonHoverOver" type="Button" parent="ScrollContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
+margin_top = 237.0
+margin_right = 80.0
+margin_bottom = 281.0
+focus_mode = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "hovertxt"
+
+[node name="ButtonChangeChapter" type="Button" parent="ScrollContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
+margin_top = 285.0
+margin_right = 80.0
+margin_bottom = 328.0
+focus_mode = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "toChapter"
+
+[node name="ButtonBB_Bold" type="Button" parent="ScrollContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
+margin_top = 332.0
+margin_right = 80.0
+margin_bottom = 376.0
+focus_mode = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "bb_bold"
+
+[node name="ButtonBB_Italics" type="Button" parent="ScrollContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
+margin_top = 380.0
+margin_right = 80.0
+margin_bottom = 423.0
+focus_mode = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "bb_italics"
+
+[node name="ButtonBB_color" type="Button" parent="ScrollContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
+margin_top = 427.0
+margin_right = 80.0
+margin_bottom = 471.0
+focus_mode = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "bb_color"
+
+[node name="ButtonBB_img" type="Button" parent="ScrollContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
+margin_top = 475.0
+margin_right = 80.0
+margin_bottom = 519.0
+focus_mode = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "bb_img"
+
+[node name="VBoxChoices" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_top = 579.0
+margin_right = 1024.0
+margin_bottom = 593.0
+size_flags_horizontal = 3
+
+[node name="HBox" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/VBoxChoices"]
+margin_right = 1024.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/VBoxChoices/HBox"]
+margin_right = 494.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Choices:"
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/VBoxChoices/HBox"]
+margin_left = 498.0
+margin_right = 992.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "If Statements:"
+
+[node name="Label3" type="Label" parent="ScrollContainer/VBoxContainer/VBoxChoices/HBox"]
+margin_left = 996.0
+margin_right = 1024.0
+margin_bottom = 14.0
+text = "Slot:"
+
+[connection signal="popup_hide" from="." to="." method="_on_ValueEdit_popup_hide"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/HSplitContainer/VBoxContainer/ButtonStart" to="." method="_on_ButtonStart_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/HSplitContainer/VBoxContainer/ButtonInsertVar" to="." method="_on_ButtonInsertVar_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/HSplitContainer/VBoxContainer/ButtonChangeVar" to="." method="_on_ButtonChangeVar_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/HSplitContainer/VBoxContainer/ButtonIf" to="." method="_on_ButtonIf_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/HSplitContainer/VBoxContainer/ButtonSignal" to="." method="_on_ButtonSignal_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/HSplitContainer/VBoxContainer/ButtonHoverOver" to="." method="_on_ButtonHoverOver_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/HSplitContainer/VBoxContainer/ButtonChangeChapter" to="." method="_on_ButtonChangeChapter_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/HSplitContainer/VBoxContainer/ButtonBB_Bold" to="." method="_on_ButtonBB_Bold_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/HSplitContainer/VBoxContainer/ButtonBB_Italics" to="." method="_on_ButtonBB_Italics_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/HSplitContainer/VBoxContainer/ButtonBB_color" to="." method="_on_ButtonBB_color_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/HSplitContainer/VBoxContainer/ButtonBB_img" to="." method="_on_ButtonBB_img_pressed"]

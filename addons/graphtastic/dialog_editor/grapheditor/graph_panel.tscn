@@ -1,0 +1,78 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/graphtastic/dialog_editor/grapheditor/graphedit.gd" type="Script" id=1]
+[ext_resource path="res://addons/graphtastic/resources/style_themes/theme.tres" type="Theme" id=2]
+
+[node name="GraphPanel" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Vbox" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxMenu" type="HBoxContainer" parent="Vbox"]
+margin_right = 1024.0
+margin_bottom = 24.0
+
+[node name="New" type="Button" parent="Vbox/HBoxMenu"]
+margin_right = 74.0
+margin_bottom = 24.0
+text = "new node"
+
+[node name="Quicksave" type="Button" parent="Vbox/HBoxMenu"]
+margin_left = 78.0
+margin_right = 153.0
+margin_bottom = 24.0
+text = "quicksave"
+
+[node name="Quickplay" type="Button" parent="Vbox/HBoxMenu"]
+margin_left = 157.0
+margin_right = 262.0
+margin_bottom = 24.0
+text = "play quicksave"
+
+[node name="Debug" type="Button" parent="Vbox/HBoxMenu"]
+margin_left = 266.0
+margin_right = 317.0
+margin_bottom = 24.0
+text = "debug"
+
+[node name="CheckBox" type="CheckBox" parent="Vbox/HBoxMenu"]
+margin_left = 321.0
+margin_right = 525.0
+margin_bottom = 24.0
+text = "auto popup name on create"
+
+[node name="GraphEdit" type="GraphEdit" parent="Vbox"]
+margin_top = 28.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+right_disconnects = true
+scroll_offset = Vector2( 0, -24 )
+script = ExtResource( 1 )
+
+[connection signal="pressed" from="Vbox/HBoxMenu/New" to="Vbox/GraphEdit" method="_on_New_pressed"]
+[connection signal="pressed" from="Vbox/HBoxMenu/Quicksave" to="Vbox/GraphEdit" method="_on_Quicksave_pressed"]
+[connection signal="pressed" from="Vbox/HBoxMenu/Quickplay" to="Vbox/GraphEdit" method="_on_Quickplay_pressed"]
+[connection signal="pressed" from="Vbox/HBoxMenu/Debug" to="Vbox/GraphEdit" method="_on_Debug_pressed"]
+[connection signal="connection_from_empty" from="Vbox/GraphEdit" to="Vbox/GraphEdit" method="_on_GraphEdit_connection_from_empty"]
+[connection signal="connection_request" from="Vbox/GraphEdit" to="Vbox/GraphEdit" method="_on_GraphEdit_connection_request"]
+[connection signal="connection_to_empty" from="Vbox/GraphEdit" to="Vbox/GraphEdit" method="_on_GraphEdit_connection_to_empty"]
+[connection signal="copy_nodes_request" from="Vbox/GraphEdit" to="Vbox/GraphEdit" method="_on_GraphEdit_copy_nodes_request"]
+[connection signal="delete_nodes_request" from="Vbox/GraphEdit" to="Vbox/GraphEdit" method="_on_GraphEdit_delete_nodes_request"]
+[connection signal="disconnection_request" from="Vbox/GraphEdit" to="Vbox/GraphEdit" method="_on_GraphEdit_disconnection_request"]
+[connection signal="paste_nodes_request" from="Vbox/GraphEdit" to="Vbox/GraphEdit" method="_on_GraphEdit_paste_nodes_request"]
