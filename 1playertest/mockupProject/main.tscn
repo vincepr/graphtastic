@@ -1,0 +1,123 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://mockupProject/gt_dialog_textbox.gd" type="Script" id=1]
+[ext_resource path="res://mockupProject/gt_speaker_textbox.gd" type="Script" id=2]
+[ext_resource path="res://mockupProject/gt_vbox_choices.gd" type="Script" id=3]
+[ext_resource path="res://icon.png" type="Texture" id=4]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.41418
+margin_right = 1.41418
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+margin_left = 6.51016
+margin_top = 269.652
+margin_right = 193.51
+margin_bottom = 309.652
+bbcode_text = "this is the speakers text"
+text = "this is the speakers text"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 712.763
+margin_top = 200.411
+margin_right = 978.763
+margin_bottom = 354.411
+grow_vertical = 0
+alignment = 2
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+margin_right = 266.0
+margin_bottom = 20.0
+disabled = true
+text = "choice1 pick the red button"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+margin_top = 24.0
+margin_right = 266.0
+margin_bottom = 44.0
+text = "choice1 pick the green button"
+
+[node name="Button3" type="Button" parent="VBoxContainer"]
+margin_top = 48.0
+margin_right = 266.0
+margin_bottom = 68.0
+text = "choice1 pick blue red button"
+
+[node name="Button5" type="Button" parent="VBoxContainer"]
+margin_top = 72.0
+margin_right = 266.0
+margin_bottom = 92.0
+text = "choice1 pick blue red button"
+
+[node name="Button6" type="Button" parent="VBoxContainer"]
+margin_top = 96.0
+margin_right = 266.0
+margin_bottom = 116.0
+text = "choice1 pick blue red button"
+
+[node name="Button7" type="Button" parent="VBoxContainer"]
+margin_top = 120.0
+margin_right = 266.0
+margin_bottom = 140.0
+text = "choice1 pick blue red button"
+
+[node name="Button8" type="Button" parent="VBoxContainer"]
+margin_top = 144.0
+margin_right = 266.0
+margin_bottom = 164.0
+text = "choice1 pick blue red button"
+
+[node name="Button9" type="Button" parent="VBoxContainer"]
+margin_top = 168.0
+margin_right = 266.0
+margin_bottom = 188.0
+text = "choice1 pick blue red button"
+
+[node name="Button4" type="Button" parent="VBoxContainer"]
+margin_top = 192.0
+margin_right = 266.0
+margin_bottom = 212.0
+text = "choice1 pick the orange button"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 39.8897
+margin_top = 314.41
+margin_right = 103.89
+margin_bottom = 378.41
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.95318
+margin_top = -209.05
+margin_right = 1.95313
+margin_bottom = 3.95087
+bbcode_enabled = true
+bbcode_text = "some test to test the box"
+text = "some test to test the box"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+resource_path = "res://mockupProject/saves/123.tsv"
+textspeed = 10.0
+
+[connection signal="pressed" from="VBoxContainer/Button" to="VBoxContainer" method="_on_Button_pressed"]
