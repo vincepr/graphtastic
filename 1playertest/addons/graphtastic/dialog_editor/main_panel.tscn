@@ -37,7 +37,7 @@ __meta__ = {
 
 [node name="ChapterMenuButton" type="MenuButton" parent="VBoxContainer/MainMenu"]
 margin_left = 21.0
-margin_right = 328.0
+margin_right = 242.0
 margin_bottom = 31.0
 size_flags_horizontal = 3
 text = "1 | chapter1"
@@ -46,24 +46,37 @@ clip_text = true
 items = [ "add New Chapter", null, 0, false, false, 0, 0, null, "", false, "change Name of Chapter", null, 0, false, false, 1, 0, null, "", false, "delete current Chapter", null, 0, false, false, 2, 0, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "1 | chapter1", null, 0, false, false, 4, 0, null, "", false ]
 
 [node name="NewChapter" type="Button" parent="VBoxContainer/MainMenu"]
-margin_left = 332.0
-margin_right = 353.0
+margin_left = 246.0
+margin_right = 267.0
 margin_bottom = 31.0
 text = "+"
 
 [node name="VSeparator" type="VSeparator" parent="VBoxContainer/MainMenu"]
-margin_left = 357.0
-margin_right = 361.0
+margin_left = 271.0
+margin_right = 275.0
 margin_bottom = 31.0
 
+[node name="Quickplay" type="Button" parent="VBoxContainer/MainMenu"]
+margin_left = 279.0
+margin_right = 357.0
+margin_bottom = 31.0
+text = "testPLAY"
+
 [node name="LabelFilename" type="Label" parent="VBoxContainer/MainMenu"]
-margin_left = 365.0
-margin_right = 673.0
+margin_left = 361.0
+margin_right = 582.0
 margin_bottom = 31.0
 size_flags_horizontal = 3
-text = "not currently saved.tsv"
+text = "unsaved file"
 align = 2
 clip_text = true
+
+[node name="Quicksave" type="Button" parent="VBoxContainer/MainMenu"]
+margin_left = 586.0
+margin_right = 673.0
+margin_bottom = 31.0
+disabled = true
+text = "quicksave"
 
 [node name="NewFile" type="Button" parent="VBoxContainer/MainMenu"]
 margin_left = 677.0
@@ -152,6 +165,8 @@ __meta__ = {
 
 [connection signal="pressed" from="VBoxContainer/MainMenu/DeleteChapter" to="." method="_on_DeleteChapter_pressed"]
 [connection signal="pressed" from="VBoxContainer/MainMenu/NewChapter" to="." method="_on_NewChapter_pressed"]
+[connection signal="pressed" from="VBoxContainer/MainMenu/Quickplay" to="." method="_on_Quickplay_pressed"]
+[connection signal="pressed" from="VBoxContainer/MainMenu/Quicksave" to="." method="_on_Quicksave_pressed"]
 [connection signal="pressed" from="VBoxContainer/MainMenu/NewFile" to="." method="_on_NewFile_pressed"]
 [connection signal="pressed" from="VBoxContainer/MainMenu/SaveTsv" to="." method="_on_SaveTsv_pressed"]
 [connection signal="pressed" from="VBoxContainer/MainMenu/LoadTsv" to="." method="_on_LoadTsv_pressed"]

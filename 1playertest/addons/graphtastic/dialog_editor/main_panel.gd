@@ -4,18 +4,26 @@ onready var graph_paneltscn = preload("grapheditor/graph_panel.tscn")
 var graph_panel
 onready var filedialog = get_node("FileDialog")
 onready var chaptermenu = get_node("VBoxContainer/MainMenu/ChapterMenuButton")
-onready var label_filename_savedinfo = get_node("VBoxContainer/MainMenu/LabelFilename")
+onready var label_filename = get_node("VBoxContainer/MainMenu/LabelFilename")
+onready var quicksave = get_node("VBoxContainer/MainMenu/Quicksave")
 var chapterdata = [{"chapterID": 1, "chaptername": "chapter1", "poolstrings": []}]
 var current_chapterID: int = 0
 var copy_graphs_takeover = null
+const story_file_helpergd = preload("res://addons/graphtastic/helper_classes/gt_story_file_helper.gd")
+var story_helper =story_file_helpergd.new()
+
 
 #this data should never get changed on runtime:
-var empty_chapter_template= {"chapterID": 1, "chaptername": "unnamed", "poolstrings": []}
-var headerinfo_chapter: PoolStringArray = ["<- chaptername", "<- chapterID"]
-var headerinfo: PoolStringArray = ["nID", "slots", "name", "dialogtext", "speaker", "facepice", "off_x", "off_y", "choices", "connects"]
+var empty_chapter_template 					#= {"chapterID": 1, "chaptername": "unnamed", "poolstrings": []}
+var headerinfo_chapter: PoolStringArray 	#= ["<- chaptername", "<- chapterID"]
+var headerinfo: PoolStringArray 			#= ["nID", "slots", "name", "dialogtext", "speaker", "facepice", "off_x", "off_y", "choices", "connects"]
+
 
 
 func _ready():
+	empty_chapter_template = story_helper.empty_chapter_template
+	headerinfo_chapter = story_helper.headerinfo_chapter
+	headerinfo = story_helper.headerinfo
 	chaptermenu.get_popup().connect("id_pressed", self, "_on_ChapterMenuButton_selected")
 	get_node("NewChapterPopup").register_text_enter(get_node("NewChapterPopup/LineEdit"))
 	get_node("RenameChapterPopup").register_text_enter(get_node("RenameChapterPopup/LineEdit"))
@@ -74,9 +82,11 @@ func load_current_chapter_from_graphedit():
 #######     funcs to load and save to tsv       			 ###########
 func _on_SaveTsv_pressed():
 	filedialog.mode=4
+	filedialog.invalidate()
 	filedialog.popup_centered_ratio(0.7)
 func _on_LoadTsv_pressed():
 	filedialog.mode=0
+	filedialog.invalidate()
 	filedialog.popup_centered_ratio(0.7)
 func _on_FileDialog_file_selected(filepath):
 	if filedialog.mode==0:
@@ -97,58 +107,18 @@ func save_as_tsv(file_path:String):
 		for poolstring in chapter["poolstrings"]:
 			save.store_csv_line(poolstring, "	")
 	save.close()
+	label_filename.text=file_path
+	quicksave.disabled=false
 
 
 func load_from_tsv(file_path):
-	var new_chapterdata = []
-	var save = File.new()
-	if not save.file_exists(file_path):
-		print("graphtastic_error: no file to load")
-		return
-	save.open(file_path, File.READ)
-	var loadedheader = save.get_csv_line("	")
-	if loadedheader != headerinfo:
-		print("graphtastic_error: headercheck error, file is corrupt and cant be loaded")
-		save.close()
-		return
-	if save.eof_reached():
-		print("graphtastic_error:, file empty cant load")
-		save.close()
-		return 
-	var nextline = save.get_csv_line("	")
-	if nextline.size() != 2*headerinfo_chapter.size():
-		print("graphtastic_error: first chapter data size is wrong")
-		save.close()
-		return
-	elif (nextline[1]==headerinfo_chapter[0] and nextline[3]==headerinfo_chapter[1]):
-		var new_chapter = empty_chapter_template.duplicate()
-		new_chapter["chapterID"]=nextline[2] as int
-		new_chapter["chaptername"]=nextline[0]
-		new_chapter["poolstrings"]=empty_chapter_template["poolstrings"].duplicate()
-		new_chapterdata.push_back(new_chapter)
-	else:
-		print("graphtastic_error: no first chapter exists in file")
-		save.close()
-		return
-	nextline = save.get_csv_line("	")
-	while !save.eof_reached():
-		if nextline.size() != headerinfo.size() and nextline.size() != 2*headerinfo_chapter.size():
-			print("graphtastic_error file data of wrong column-size when loading the line: "+String(nextline))
-			save.close()
-			return
-		elif nextline[1]==headerinfo_chapter[0] and nextline[3]==headerinfo_chapter[1]:
-			var new_chapter = empty_chapter_template.duplicate()
-			new_chapter["chapterID"]=nextline[2] as int
-			new_chapter["chaptername"]=nextline[0]
-			new_chapter["poolstrings"]=empty_chapter_template["poolstrings"].duplicate()
-			new_chapterdata.push_back(new_chapter)
-		else:
-			new_chapterdata[new_chapterdata.size()-1]["poolstrings"].push_back(nextline)
-		nextline = save.get_csv_line("	")
+	var new_chapterdata=story_helper.load_from_file(file_path)	#new
+	if !new_chapterdata: return									#new
 	chapterdata=new_chapterdata
 	current_chapterID=0
 	set_current_chapter(new_chapterdata[0]["chapterID"])
-	save.close()
+	label_filename.text=file_path
+	quicksave.disabled=false
 	
 func parse_chapter_data(poolstring):
 	var new 
@@ -159,6 +129,8 @@ func parse_chapter_data(poolstring):
 func _on_NewFile_pressed():
 	get_node("CreateNewFilePopup").popup_centered()
 func _on_CreateNewFilePopup_confirmed():
+	label_filename.text="new unsaved file"
+	quicksave.disabled=true
 	chapterdata=[] ###empty chapter data
 	current_chapterID=0
 	var empty_chapter = empty_chapter_template.duplicate()
@@ -234,3 +206,16 @@ func _on_RenameChapterPopup_confirmed():
 func _on_CloseEditor_pressed():
 	get_parent().get_node("Start").visible=true
 	self.queue_free()
+
+
+func _on_Quicksave_pressed():
+	save_as_tsv(label_filename.text)
+
+
+func _on_Quickplay_pressed():
+	save_as_tsv("res://addons/graphtastic/userdata/quickplay.tsv")
+	var quickplay_tscn=preload("res://addons/graphtastic/dialog_player/toolmode/popup_ineditor.tscn")
+	var quickplay=quickplay_tscn.instance()
+	add_child(quickplay)
+	print(quickplay)
+	quickplay.popup_centered_ratio(0.9)
