@@ -6,17 +6,17 @@ var main_panel_instance
 
 
 func _enter_tree():
-	#Dialog Player Node:
-	add_custom_type("GraphtasticPlayer", "Control", preload("dialog_player/dialog_player.gd"), preload("graphtastic_icon.png"))
-	add_autoload_singleton ("GTP", "res://addons/graphtastic/dialog_player/variablesdata_singleton.gd")
-	#main_panel:
+	#Dialog Player Nodes:
+	#add_custom_type("GraphtasticPlayer", "Control", preload("dialog_player/dialog_player.gd"), preload("graphtastic_icon.png"))
+	add_autoload_singleton ("GTP", "res://addons/graphtastic/helper_classes/gt_variablesdata_singleton.gd")
+	#Editor in MainPanel:
 	main_panel_instance = MainPanel.instance()
 	get_editor_interface().get_editor_viewport().add_child(main_panel_instance)
 	make_visible(false)
 
 
 func _exit_tree():
-	remove_custom_type("GraphtasticPlayer")
+	#remove_custom_type("GraphtasticPlayer")
 	remove_autoload_singleton ("GTP")
 	if main_panel_instance:
 		main_panel_instance.queue_free()

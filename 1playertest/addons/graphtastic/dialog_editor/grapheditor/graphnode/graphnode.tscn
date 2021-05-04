@@ -43,8 +43,9 @@ text = "Edit"
 margin_left = 58.0
 margin_right = 132.0
 margin_bottom = 24.0
+hint_tooltip = "only slots that are connected are valid for the dialog-box."
 min_value = 1.0
-max_value = 40.0
+max_value = 60.0
 value = 1.0
 align = 2
 
@@ -57,17 +58,24 @@ margin_bottom = 73.0
 [node name="LineEditChoice" type="LineEdit" parent="HBox"]
 margin_right = 58.0
 margin_bottom = 24.0
+hint_tooltip = "Choices:
+Text here will show up as a button for the player to choose from if there are multiple outgoing connections.
+(choice will only show up if there are actually multiple choices set up that lead to paths)"
 size_flags_horizontal = 3
 size_flags_vertical = 3
-placeholder_text = "choice"
+placeholder_text = "#"
 
 [node name="LineEditIf" type="LineEdit" parent="HBox"]
 margin_left = 62.0
 margin_right = 120.0
 margin_bottom = 24.0
+hint_tooltip = "optional IF-statments.
+Choice-Buttons will grey-out if condition is not met.
+
+if Choice texts are left empty dialog will go from top to bottom to find the next valid path."
 size_flags_horizontal = 3
 size_flags_vertical = 3
-placeholder_text = "<if>"
+placeholder_text = "#"
 
 [node name="Label" type="Label" parent="HBox"]
 margin_left = 124.0

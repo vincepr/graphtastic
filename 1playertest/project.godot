@@ -14,14 +14,6 @@ config/name="1 Playertest"
 run/main_scene="res://mockupProject/main.tscn"
 config/icon="res://icon.png"
 
-[autoload]
-
-GTP="*res://addons/graphtastic/dialog_player/variablesdata_singleton.gd"
-
-[editor_plugins]
-
-enabled=PoolStringArray( "res://addons/graphtastic/plugin.cfg" )
-
 [input]
 
 GT_input={

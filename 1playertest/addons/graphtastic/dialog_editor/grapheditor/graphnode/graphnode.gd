@@ -5,7 +5,7 @@ var nID_data = 1
 var nodename_data: String= ""
 var dialogtxt_data: String = ""
 var speaker_data: String = ""
-var facepic_data: String = ""
+var facepic_data: Array = ["", "", ""]
 var connection_count_data: int = 1
 signal delete_pressed(value)
 signal deleted_slot(value, value)

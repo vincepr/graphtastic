@@ -17,7 +17,7 @@ func get_data_from_poolstrings():
 		single_poolstring.push_back(graph.nodename_data)				#2	nodename
 		single_poolstring.push_back(graph.dialogtxt_data)				#3	dialogtxt
 		single_poolstring.push_back(graph.speaker_data)					#4	speaker
-		single_poolstring.push_back(graph.facepic_data)					#5	facepic
+		single_poolstring.push_back(to_json(graph.facepic_data))					#5	facepic
 		single_poolstring.push_back(graph.get_offset().x)				#6	off_x
 		single_poolstring.push_back(graph.get_offset().y)				#7	off_y
 		single_poolstring.push_back(get_graph_choices_ifs(graph))		#8	[choices, ifs][...]
@@ -32,7 +32,7 @@ func set_data_from_poolstrings(all_poolstrings):
 		new_graph.set_nodename_data(single_pool[2])
 		new_graph.set_dialogtxt_data(single_pool[3])
 		new_graph.speaker_data= single_pool[4]
-		new_graph.facepic_data= single_pool[5]
+		new_graph.facepic_data= parse_json(single_pool[5])
 		set_graph_choices_ifs(new_graph, single_pool[8])
 		var all_connects_outgoing = parse_json(single_pool[9])
 		for con in all_connects_outgoing:
@@ -128,7 +128,8 @@ func _on_Quickplay_pressed():
 
 
 func _on_New_pressed():
-	create_new_node()
+	var new_node =create_new_node()
+	new_node.offset=new_node.offset+scroll_offset/zoom
 
 
 ######+          custom Signals from graphnode         ##########
@@ -187,7 +188,7 @@ func _on_GraphEdit_copy_nodes_request():
 
 
 func _on_GraphEdit_paste_nodes_request():
-	var offset = Vector2(0,0)+self.scroll_offset+get_viewport().get_mouse_position()
+	var offset = Vector2(0,0)+(self.scroll_offset+get_local_mouse_position())/zoom ##get_viewport().get_mouse_position()
 	for copy in copy_d_graphs:
 		var new_node = create_new_node(0, copy[0])
 		new_node.set_nodename_data(copy[1])
@@ -203,6 +204,5 @@ func _on_GraphEdit_paste_nodes_request():
 
 
 func _on_Debug_pressed():
-	create_new_node(66)
 	print(get_data_from_poolstrings())
 	print("all_connections: "+String(all_connections)+"all_graphnodes: "+String(all_graphnodes)+"   get_connection(list):"+String(get_connection_list()))
