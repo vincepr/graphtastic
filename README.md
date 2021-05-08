@@ -1,7 +1,7 @@
 # GraphTastic Dialog Player
 ## _plugin for the godot game-engine_
 
-https://github.com/vinceprobst/graphtastic
+https://github.com/vincepr/graphtastic
 
 
 Graphtastic extends godot with a custom editor to create and edit, mindmap-like branching dialog files on the one hand.
