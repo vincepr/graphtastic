@@ -1,0 +1,300 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://demo_project/resources/pictures_faces/em_talk_smug.png" type="Texture" id=1]
+[ext_resource path="res://addons/graphtastic/dialog_player/normal_mode/choices/gt_vbox_choices.gd" type="Script" id=2]
+[ext_resource path="res://addons/graphtastic/dialog_player/normal_mode/textbox/gt_dialog_textbox.gd" type="Script" id=3]
+[ext_resource path="res://addons/graphtastic/dialog_player/normal_mode/speaker/gt_speaker_textbox.gd" type="Script" id=4]
+[ext_resource path="res://addons/graphtastic/dialog_player/normal_mode/pictures/gt_texture_rect.gd" type="Script" id=5]
+[ext_resource path="res://demo_project/resources/pictures_faces/em_costume3.png" type="Texture" id=6]
+[ext_resource path="res://demo_project/resources/pictures_menuframes/dark.png" type="Texture" id=7]
+[ext_resource path="res://demo_project/resources/pictures_bg/forest_bg.jpg" type="Texture" id=8]
+[ext_resource path="res://demo_project/resources/fonts/NotoSans-Italic.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://demo_project/resources/fonts/NotoSans-BoldItalic.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://demo_project/resources/fonts/NotoSans-Bold.ttf" type="DynamicFontData" id=11]
+[ext_resource path="res://demo_project/resources/fonts/NotoSans-Regular.ttf" type="DynamicFontData" id=12]
+[ext_resource path="res://demo_project/resources/themes/theme.tres" type="Theme" id=13]
+[ext_resource path="res://demo_project/scenes/dialog_player.gd" type="Script" id=14]
+
+[sub_resource type="DynamicFont" id=1]
+size = 30
+font_data = ExtResource( 12 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 25
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 25
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 25
+font_data = ExtResource( 11 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 25
+font_data = ExtResource( 12 )
+
+[sub_resource type="InputEventKey" id=6]
+scancode = 32
+
+[sub_resource type="InputEventKey" id=7]
+scancode = 16777221
+
+[sub_resource type="Animation" id=8]
+resource_name = "New Anim"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
+}
+
+[node name="DialogPlayer" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GTDialogPicture_CenterAsBG" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0.490196 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -209.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 8 )
+expand = true
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+is_persistent = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EmptySpace" type="Control" parent="VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 35.0
+margin_right = 1024.0
+margin_bottom = 388.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 25
+
+[node name="GTDialogPicture_Left" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+margin_right = 324.0
+margin_bottom = 353.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 6 )
+expand = true
+stretch_mode = 7
+script = ExtResource( 5 )
+is_persistent = true
+identifier = 0
+
+[node name="GTDialogSpeakerLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/GTDialogPicture_Left"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = -43.0
+margin_right = -10.0
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "Narrator"
+text = "Narrator"
+fit_content_height = true
+scroll_active = false
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect_Speaker_Label_BG" type="ColorRect" parent="VBoxContainer/HBoxContainer/GTDialogPicture_Left/GTDialogSpeakerLabel"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.176471, 0.176471, 0.176471, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GTDialogPicture_Right" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+margin_left = 349.0
+margin_right = 674.0
+margin_bottom = 353.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 7
+script = ExtResource( 5 )
+identifier = 2
+
+[node name="Choices_Space" type="Control" parent="VBoxContainer/HBoxContainer"]
+margin_left = 699.0
+margin_right = 1024.0
+margin_bottom = 353.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GTDialogChoices" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Choices_Space"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 11.0
+margin_right = -11.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 13 )
+custom_constants/separation = 8
+alignment = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+clip_text = true
+
+[node name="Button_these_are_just_mockups" type="Button" parent="VBoxContainer/HBoxContainer/Choices_Space/GTDialogChoices"]
+margin_top = 268.0
+margin_right = 303.0
+margin_bottom = 291.0
+disabled = true
+text = "just an example"
+
+[node name="Button_and they_will_get_deleted" type="Button" parent="VBoxContainer/HBoxContainer/Choices_Space/GTDialogChoices"]
+margin_top = 299.0
+margin_right = 303.0
+margin_bottom = 322.0
+text = "Drink the red potion"
+
+[node name="Button_once_running" type="Button" parent="VBoxContainer/HBoxContainer/Choices_Space/GTDialogChoices"]
+margin_top = 330.0
+margin_right = 303.0
+margin_bottom = 353.0
+text = "Do nothing at all..."
+
+[node name="TextboxSpace" type="Control" parent="VBoxContainer"]
+margin_top = 388.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.6
+
+[node name="ColorRect_Background" type="ColorRect" parent="VBoxContainer/TextboxSpace"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.227451, 0.227451, 0.227451, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect_Textbox" type="NinePatchRect" parent="VBoxContainer/TextboxSpace"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GTDialogTextbox" type="RichTextLabel" parent="VBoxContainer/TextboxSpace"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 101.335
+margin_top = 10.0
+margin_right = -18.6652
+margin_bottom = -10.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/bold_italics_font = SubResource( 2 )
+custom_fonts/italics_font = SubResource( 3 )
+custom_fonts/bold_font = SubResource( 4 )
+custom_fonts/normal_font = SubResource( 5 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+bbcode_enabled = true
+bbcode_text = "This text is just here to see how it will look.
+Once we start a dialog it will get replaced!"
+text = "This text is just here to see how it will look.
+Once we start a dialog it will get replaced!"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+textspeed = 0.044
+contine_key = SubResource( 6 )
+another_key = SubResource( 7 )
+
+[node name="Touch_Button" type="Button" parent="VBoxContainer/TextboxSpace"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Contine_Button" type="Button" parent="VBoxContainer/TextboxSpace/Touch_Button"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -108.0
+margin_top = -59.0
+margin_right = -24.0
+margin_bottom = -17.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_scale = Vector2( 1.03858, 1.03858 )
+focus_mode = 0
+size_flags_stretch_ratio = 0.0
+theme = ExtResource( 13 )
+text = "continue"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="VBoxContainer/TextboxSpace/Touch_Button/Contine_Button"]
+autoplay = "New Anim"
+"anims/New Anim" = SubResource( 8 )
+
+[connection signal="GT_text_animation_finished" from="VBoxContainer/TextboxSpace/GTDialogTextbox" to="." method="_on_GTDialogTextbox_GT_text_animation_finished"]
+[connection signal="GT_text_animation_started" from="VBoxContainer/TextboxSpace/GTDialogTextbox" to="." method="_on_GTDialogTextbox_GT_text_animation_started"]
+[connection signal="pressed" from="VBoxContainer/TextboxSpace/Touch_Button" to="." method="_on_Touch_Button_pressed"]
+[connection signal="pressed" from="VBoxContainer/TextboxSpace/Touch_Button/Contine_Button" to="." method="_on_Contine_Button_pressed"]
