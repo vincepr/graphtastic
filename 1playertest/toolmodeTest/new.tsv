@@ -1,3 +1,0 @@
-nID	slots	name	dialogtext	speaker	pictures	off_x	off_y	choices	connects
-chapter1	<- chaptername	1	<- chapterID
-1	1				"["""","""",""""]"	60	18	"[["""",""""]]"	[]
