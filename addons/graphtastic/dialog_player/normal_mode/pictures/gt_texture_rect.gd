@@ -30,8 +30,7 @@ func _on_GT_set_pictures(pictures):
 	var is_valid_picture=false
 	var pic = parse_json(pictures)
 	pic = pic[identifier]
-	var file2Check = File.new()
-	if file2Check.file_exists(pic): 
+	if ResourceLoader.exists(pic): 
 		var try = load(pic)
 		if try is Texture:
 			texture=load(pic)
@@ -39,7 +38,7 @@ func _on_GT_set_pictures(pictures):
 	else:
 		if pic in GTD.pictures:
 			pic=String(GTD.pictures[pic])
-			if file2Check.file_exists(pic): 
+			if ResourceLoader.exists(pic): 
 				var try = load(pic)
 				if try is Texture:
 					texture=load(pic)
@@ -54,7 +53,6 @@ func _on_GT_set_pictures(pictures):
 				self.texture=null
 			else:
 				create_error_message(pic)
-	file2Check.close()
 
 func create_error_message(pic):
 	error_label = Label.new()
