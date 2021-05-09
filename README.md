@@ -3,6 +3,7 @@
 
 https://github.com/vincepr/graphtastic
 
+online demo version(takes a while to load): https://htmlpreview.github.io/?https://github.com/vincepr/graphtastic/blob/main/exports/html/index.html
 
 Graphtastic extends godot with a custom editor to create and edit, mindmap-like branching dialog files on the one hand.
 An fully customizable framework to display that dialog on the other hand. 
