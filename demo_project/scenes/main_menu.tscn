@@ -7,7 +7,7 @@
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 1 )
 
-[sub_resource type="GDScript" id=3]
+[sub_resource type="GDScript" id=2]
 script/source = "extends Button
 
 
@@ -22,7 +22,7 @@ func _on_ConfirmationDialog_confirmed():
 
 "
 
-[sub_resource type="GDScript" id=2]
+[sub_resource type="GDScript" id=3]
 script/source = "tool
 extends Button
 
@@ -77,8 +77,8 @@ custom_fonts/font = SubResource( 1 )
 text = "If you are running this from within Godot, make sure you have the GraphTasticDialog plugin enabled:
 Click the checkbox under [Project]->[Project Settings]->[Plugins], then [Update] or restart Godot.
 
-This editor can't save/load/play stories atm, use the real plugin in godot for that.
-You can open the story file in the editor res://demo_project/story_files/intro.tsv"
+This preview editor can't save/load/play stories atm, use the real plugin in godot for that.
+You can find the demo's story file in: res://demo_project/story_files/intro.tsv"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -87,14 +87,14 @@ __meta__ = {
 [node name="emptyspace" type="Control" parent="Start"]
 margin_top = 136.0
 margin_right = 819.0
-margin_bottom = 241.0
+margin_bottom = 216.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Control" type="Control" parent="Start"]
-margin_top = 250.0
+margin_top = 225.0
 margin_right = 819.0
-margin_bottom = 356.0
+margin_bottom = 306.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -128,7 +128,7 @@ margin_top = 54.0
 margin_right = 293.0
 margin_bottom = 77.0
 text = "change your name"
-script = SubResource( 3 )
+script = SubResource( 2 )
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="Start/Control/VBoxContainer/NameChangeButton"]
 anchor_left = 0.5
@@ -166,7 +166,7 @@ margin_right = 293.0
 margin_bottom = 104.0
 text = "help / info"
 flat = true
-script = SubResource( 2 )
+script = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -183,7 +183,7 @@ __meta__ = {
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 962.0
-margin_bottom = 1183.0
+margin_bottom = 1180.0
 bbcode_enabled = true
 bbcode_text = "This is an early version of the GraphTastic- Editor.
 So some features are still unfinished, with disabled buttons, but i dont plan on breaking any future compatabilty. If you find bugs or unexpected behavior. i'd apprciate you reporting them on: https://github.com/vinceprobst/graphtastic/issues
@@ -257,7 +257,7 @@ __meta__ = {
 margin_top = 108.0
 margin_right = 293.0
 margin_bottom = 131.0
-text = "credit"
+text = "credit for the resources"
 script = SubResource( 4 )
 
 [node name="AcceptDialog" type="AcceptDialog" parent="Start/Control/VBoxContainer/credits"]
@@ -275,18 +275,19 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Start"]
-margin_top = 365.0
+margin_top = 315.0
 margin_right = 819.0
-margin_bottom = 365.0
+margin_bottom = 315.0
 size_flags_horizontal = 3
 alignment = 1
 
 [node name="emptyspace2" type="Control" parent="Start"]
-margin_top = 374.0
+margin_top = 324.0
 margin_right = 819.0
 margin_bottom = 480.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+size_flags_stretch_ratio = 1.92
 
 [connection signal="pressed" from="Start/Control/VBoxContainer/demo_project" to="." method="_on_demo_project_pressed"]
 [connection signal="pressed" from="Start/Control/VBoxContainer/mockup_editor" to="." method="_on_mockup_editor_pressed"]
