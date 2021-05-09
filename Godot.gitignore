@@ -11,5 +11,4 @@ export_presets.cfg
 data_*/
 
 #custom for this project
-exports/
 addons/graphtastic/userdata/
